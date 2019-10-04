@@ -1,16 +1,24 @@
 package com.project.movieapp.web
 
-import com.google.gson.Gson
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
+//    API key: fc621c22645579c003cd78bba01d4f70
 class WebClient {
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("")
+    private var retrofitBase = Retrofit.Builder()
+
+        .baseUrl(URLConstants.BASEURL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
 
+    fun popularService(): MovieService = retrofitBase.create(MovieService::class.java)
 
+ object URLConstants{
+    const val BASEURL = "https://api.themoviedb.org/3/"
+     const val IMAGEURL = "https://image.tmdb.org/t/p/w500/"
+
+}
 }
