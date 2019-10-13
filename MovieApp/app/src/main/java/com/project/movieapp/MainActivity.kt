@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.movieapp.adapter.PopularListAdapter
 import com.project.movieapp.extensions.shortToast
@@ -24,7 +25,8 @@ class MainActivity : AppCompatActivity() {
         getPopular()
 
         popularRecyclerView.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
+//            layoutManager = LinearLayoutManager(this@MainActivity)
+            layoutManager = GridLayoutManager(this@MainActivity,2)
             itemAnimator = DefaultItemAnimator()
             setHasFixedSize(true)
         }

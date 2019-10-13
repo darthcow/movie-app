@@ -23,9 +23,9 @@ class PopularListAdapter(private val context: Context, val items: List<ResultBea
         val currentItem = items[position]
 
         with(currentItem){
-            holder.movieTitle.text = "Title: $title"
-            holder.releaseDate.text = "Release Date: $release_date"
-            holder.averageScore.text = "Average Score: $vote_average"
+            holder.movieTitle.text = title
+//            holder.releaseDate.text = "Release Date: $release_date"
+//            holder.averageScore.text = "Average Score: $vote_average"
             holder.moviePoster.loadUrl(URLConstants.IMAGEURL+poster_path)
 
         }
@@ -36,7 +36,7 @@ class PopularListAdapter(private val context: Context, val items: List<ResultBea
 class Holder(itemview: View) : RecyclerView.ViewHolder(itemview) {
     //fixme refactor names later to reference adapter
     val movieTitle: TextView = itemview.findViewById(R.id.movieTitle)
-    val releaseDate: TextView = itemview.findViewById(R.id.releaseDate)
-    val averageScore: TextView = itemview.findViewById(R.id.averageScore)
+//    val releaseDate: TextView = itemview.findViewById(R.id.releaseDate)
+//    val averageScore: TextView = itemview.findViewById(R.id.averageScore)
     val moviePoster: ImageView = itemview.findViewById(R.id.moviePoster)
 }
