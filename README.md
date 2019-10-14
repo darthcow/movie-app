@@ -1,2 +1,2 @@
 # movie-app
-app made using The Movie Database API(https://developers.themoviedb.org/3) version 3 
+App made using The Movie Database API(https://developers.themoviedb.org/3) version 3 
