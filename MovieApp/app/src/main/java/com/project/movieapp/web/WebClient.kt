@@ -14,11 +14,11 @@ class WebClient {
         .build()
 
 
-    fun popularService(): MovieService = retrofitBase.create(MovieService::class.java)
+    fun movieService(): MovieService = retrofitBase.create(MovieService::class.java)
 
  object URLConstants{
     const val BASEURL = "https://api.themoviedb.org/3/"
-     const val IMAGEURL = "https://image.tmdb.org/t/p/w500/"
+     const val IMAGEURL = "https://image.tmdb.org/t/p/w780/"
 
 }
 }
