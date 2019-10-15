@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -14,7 +13,7 @@
         tools:context=".MovieDetailsActivity">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/details_backdrop"
             android:layout_width="0dp"
             android:layout_height="280dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,23 +22,23 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic[1]" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/details_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
             android:gravity="center_horizontal"
-            android:text="Avengers: Infinity War"
+            android:text="Movie Title"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/details_backdrop" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/details_tagline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -49,58 +48,56 @@
             android:text="Tagline"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:textStyle="normal"
+            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/details_title" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/details_length"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Length: 120 minutes"
+            android:text="Length in minutes"
 
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView4"
+            app:layout_constraintBottom_toBottomOf="@+id/details_releasedate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/textView4" />
+            app:layout_constraintStart_toEndOf="@+id/details_releasedate"
+            app:layout_constraintTop_toTopOf="@+id/details_releasedate" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/details_releasedate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
 
-            android:text="TextView"
+            android:text="Release date"
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView2"
+            app:layout_constraintEnd_toStartOf="@+id/details_length"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+            app:layout_constraintTop_toBottomOf="@+id/details_ratingbar"
             tools:text="Release: 2006-06-09" />
 
         <RatingBar
-            android:id="@+id/ratingBar"
+            android:id="@+id/details_ratingbar"
             style="@style/Widget.AppCompat.RatingBar.Indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:progressBackgroundTint="@color/colorAccent"
             android:stepSize="0.1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/details_tagline" />
 
         <co.lujun.androidtagview.TagContainerLayout
-
-            android:id="@+id/detail_body_tags"
+            android:id="@+id/details_tags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -113,45 +110,40 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_body_trailers3"
+            app:layout_constraintTop_toBottomOf="@+id/details_tags_text"
             app:tag_background_color="@color/colorPrimaryDark"
             app:tag_border_color="@color/colorPrimaryDark"
             app:tag_clickable="false"
             app:tag_horizontal_padding="5dp"
             app:tag_text_color="@android:color/white"
             app:tag_theme="none"
-            app:tag_vertical_padding="6dp"
-            tools:visibility="gone" />
+            app:tag_vertical_padding="6dp" />
 
         <co.lujun.androidtagview.TagContainerLayout
 
-            android:id="@+id/detail_body_genres"
+            android:id="@+id/details_genres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:visibility="gone"
             app:container_background_color="@android:color/transparent"
             app:container_border_color="@android:color/transparent"
             app:container_enable_drag="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_body_trailers2"
+            app:layout_constraintTop_toBottomOf="@+id/details_genres_text"
             app:tag_background_color="@color/colorPrimaryDark"
             app:tag_border_color="@color/colorPrimaryDark"
             app:tag_clickable="false"
             app:tag_horizontal_padding="5dp"
             app:tag_text_color="@android:color/white"
             app:tag_theme="none"
-            app:tag_vertical_padding="6dp"
-            tools:visibility="gone">
-
-        </co.lujun.androidtagview.TagContainerLayout>
+            app:tag_vertical_padding="6dp"></co.lujun.androidtagview.TagContainerLayout>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/details_overview_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -164,10 +156,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_body_recyclerView_trailers" />
+            app:layout_constraintTop_toBottomOf="@+id/details_trailers_list" />
 
         <TextView
-            android:id="@+id/detail_body_summary"
+            android:id="@+id/details_overview_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -178,13 +170,15 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/details_overview_text" />
 
 
         <TextView
-            android:id="@+id/detail_body_trailers"
+            android:id="@+id/details_trailers_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
+
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -192,79 +186,76 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_body_genres"
-            tools:visibility="gone" />
+            app:layout_constraintTop_toBottomOf="@+id/details_genres" />
 
         <TextView
-            android:id="@+id/detail_body_trailers3"
+            android:id="@+id/details_tags_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:text="Tags"
+            android:visibility="gone"
+
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            tools:visibility="gone" />
+            app:layout_constraintTop_toBottomOf="@id/details_reviews_list" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/detail_body_recyclerView_trailers"
+            android:id="@+id/details_trailers_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:visibility="gone"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_body_trailers"
-            tools:itemCount="3"
-            tools:visibility="gone" />
+            app:layout_constraintTop_toBottomOf="@+id/details_trailers_text"
+            tools:itemCount="3" />
 
         <TextView
-            android:id="@+id/detail_body_reviews"
+            android:id="@+id/details_reviews_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:visibility="gone"
             android:layout_marginEnd="16dp"
             android:text="Reviews"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_body_summary"
-            tools:visibility="gone" />
+            app:layout_constraintTop_toBottomOf="@+id/details_overview_body" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/detail_body_recyclerView_reviews"
+            android:id="@+id/details_reviews_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-
             android:visibility="gone"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_body_reviews"
-            tools:itemCount="3"
-            tools:visibility="gone" />
+            app:layout_constraintTop_toBottomOf="@id/details_reviews_text"
+            tools:itemCount="3" />
 
         <TextView
-            android:id="@+id/detail_body_trailers2"
+            android:id="@+id/details_genres_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -274,11 +265,10 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_body_tags" />
+            app:layout_constraintTop_toBottomOf="@+id/details_releasedate" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
