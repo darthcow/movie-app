@@ -2,13 +2,11 @@ package com.project.movieapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.movieapp.adapter.PopularListAdapter
-import com.project.movieapp.extensions.shortToast
-import com.project.movieapp.web.ResponseBean
+import com.project.movieapp.extensions.longToast
+import com.project.movieapp.beans.PopularResponseBean
 import com.project.movieapp.web.WebClient
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -25,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         getPopular()
 
         popularRecyclerView.apply {
-//            layoutManager = LinearLayoutManager(this@MainActivity)
-            layoutManager = GridLayoutManager(this@MainActivity,2)
+            //            layoutManager = LinearLayoutManager(this@MainActivity)
+            layoutManager = GridLayoutManager(this@MainActivity, 2)
             itemAnimator = DefaultItemAnimator()
             setHasFixedSize(true)
         }
@@ -34,21 +32,29 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun getPopular() {
-        WebClient().popularService().getPopular().enqueue(object : Callback<ResponseBean> {
-            override fun onResponse(call: Call<ResponseBean>, response: Response<ResponseBean>) {
-                response.body()?.run {
-                    popularRecyclerView.adapter =
-                        PopularListAdapter(this@MainActivity,results)
+        WebClient().movieService().getPopular().enqueue(object : Callback<PopularResponseBean> {
+            override fun onResponse(
+                call: Call<PopularResponseBean>,
+                popularResponse: Response<PopularResponseBean>
+            ) {
+                with(popularResponse) {
+                if (isSuccessful) {
+                    body()?.run {
+                        popularRecyclerView.adapter =
+                            PopularListAdapter(this@MainActivity, results)
+                    }
+                } else {
+                    this@MainActivity.longToast(message())
                 }
-
             }
+        }
 
-            override fun onFailure(call: Call<ResponseBean>, t: Throwable) {
+                override fun onFailure(call: Call<PopularResponseBean>, t: Throwable) {
 //                fixme warning
-                this@MainActivity.shortToast(t.localizedMessage)
-            }
+            this@MainActivity.longToast(t.message?: "unidentified error")
+        }
 
 
-        })
-    }
+    })
+}
 }
