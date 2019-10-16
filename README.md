@@ -33,4 +33,4 @@ Todo list(Not-Priority Order(for now)):
 - Find a better app name!(accepting suggestions)
 - Introduce Dark Theme and Light Theme
 - Implement Super Responsive UI  
-- [Use GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+- Use [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
