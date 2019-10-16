@@ -7,6 +7,7 @@ The broad topics, e.g. material design, will be detailed soon enough. I still do
 
 
 Todo list (Not-Priority Order(for now)):
+-
 - ~~Implement Basic Retrofit~~
 - Implement Retrofit the right way
 - Treat possible errors and exceptions
@@ -35,3 +36,21 @@ Todo list (Not-Priority Order(for now)):
 - Implement Super Responsive UI  
 - Use [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 - Add orientation-based support 
+
+## TOPICS
+
+### To Learn:
+
+- MVVM
+- GitFlow
+- Realm
+
+### Learned:
+- soon...
+
+PS: i'm going to document in my own words explanation of the concepts I learn in another file in this repository(or maybe another repository)
+
+
+
+
+
