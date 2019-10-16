@@ -29,3 +29,5 @@ Todo list(Not-Priority Order(for now)):
 - (future) publish app on PlayStore
 - Organize Todo(constant task)
 - Implement Endless scrolling
+- Implement Animations everywhere!
+- Find a better app name!(accepting suggestions)
