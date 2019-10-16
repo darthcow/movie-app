@@ -3,32 +3,54 @@ package com.project.movieapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import co.lujun.androidtagview.TagContainerLayout
-import co.lujun.androidtagview.TagView
 import com.project.movieapp.beans.MovieDetailsBean
 import com.project.movieapp.extensions.loadUrl
 import com.project.movieapp.extensions.longToast
 import com.project.movieapp.extensions.shortToast
 import com.project.movieapp.web.WebClient
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
+
+
+
+
+//todo create and implement interface to necessary methods
 class MovieDetailsActivity : AppCompatActivity() {
+    private val realmInstance : Realm by lazy { Realm.getDefaultInstance() }
     private val movieId: Int? by lazy { intent.extras?.getInt("movieId", 0) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
         movieId?.let { getMovieDetails(it) }
+        supportActionBar?.hide()
     }
+
+//    override fun onStop() {
+//        realm.close
+//        super.onStop()
+//    }
+//    fun saveToRealm(movie: MovieDetailsBean){
+//        realmInstance.executeTransactionAsync({ bgRealm ->
+//           var realmMovie =  bgRealm.createObject(MovieDetailsBean::class.java)
+////           realmMovie.se
+//        }, {
+//            // Transaction was a success.
+//        }, {
+//            // Transaction failed and was automatically canceled.
+//        })
+//    }
 
 
     private fun getMovieDetails(movieId: Int) {
         WebClient().movieService().getMovieDetails(movieId)
             .enqueue(object : Callback<MovieDetailsBean> {
                 override fun onFailure(call: Call<MovieDetailsBean>, t: Throwable) {
-                    this@MovieDetailsActivity.shortToast(t.message?: "unidentified error")
+                    this@MovieDetailsActivity.shortToast(t.message ?: "unidentified error")
                 }
 
                 override fun onResponse(
@@ -43,8 +65,6 @@ class MovieDetailsActivity : AppCompatActivity() {
                         } else {
                             this@MovieDetailsActivity.longToast(message())
                         }
-
-
                     }
                 }
             })
@@ -83,7 +103,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
 
 
-
+//todo create adapter to trailers and reviews
             details_trailers_list.adapter
             details_reviews_list.adapter
         }
