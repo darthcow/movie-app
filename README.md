@@ -54,3 +54,6 @@ PS: i'm going to document in my own words explanation of the concepts I learn in
 
 
 
+
+
+
