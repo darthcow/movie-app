@@ -14,7 +14,7 @@ import com.project.movieapp.extensions.loadUrl
 import com.project.movieapp.beans.ResultBean
 import com.project.movieapp.web.WebClient.URLConstants
 
-class PopularListAdapter(private val context: Context, private val items: List<ResultBean>) :
+class MovieListAdapter(private val context: Context, private val items: List<ResultBean>) :
     RecyclerView.Adapter<Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder = Holder(LayoutInflater.from(context).inflate(R.layout.adapter_movie_list_item, parent, false))
@@ -27,8 +27,6 @@ class PopularListAdapter(private val context: Context, private val items: List<R
 
         with(currentItem){
             holder.movieTitle.text = title
-//            holder.releaseDate.text = "Release Date: $release_date"
-//            holder.averageScore.text = "Average Score: $vote_average"
             holder.moviePoster.loadUrl(URLConstants.IMAGEURL+poster_path)
             holder.itemView.setOnClickListener { openMovieDetails(id)}
 
@@ -44,7 +42,5 @@ class PopularListAdapter(private val context: Context, private val items: List<R
 class Holder(itemview: View) : RecyclerView.ViewHolder(itemview) {
     //fixme refactor names later to reference adapter
     val movieTitle: TextView = itemview.findViewById(R.id.movieTitle)
-//    val releaseDate: TextView = itemview.findViewById(R.id.releaseDate)
-//    val averageScore: TextView = itemview.findViewById(R.id.averageScore)
     val moviePoster: ImageView = itemview.findViewById(R.id.moviePoster)
 }
