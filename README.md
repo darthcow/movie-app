@@ -3,7 +3,7 @@ App made using [The Movie Database API](https://developers.themoviedb.org/3) ver
 
 I intend to make the most out of this project, but it will take some time. My main goal here is to learn new concepts I'm most uncomfortable with, so the todo list is somewhat big. Any suggetion/correction is more than welcome! 
 
-The broad topics(like material design) will be detailed soon enough. I still don't have it all planned. 
+The broad topics, e.g. material design, will be detailed soon enough. I still don't have it all planned. 
 
 
 Todo list(Not-Priority Order(for now)):
