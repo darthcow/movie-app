@@ -28,3 +28,4 @@ Todo list(Not-Priority Order(for now)):
 - Add Gifs/images to Readme.md
 - (future) publish app on PlayStore
 - Organize Todo(constant task)
+- Implement Endless scrolling
