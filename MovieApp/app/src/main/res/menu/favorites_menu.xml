@@ -4,15 +4,11 @@
 
 <!--todo change resource names to match color-->
     <item
-        android:id="@+id/hot_menu_button"
+        android:id="@+id/top_menu_button"
         android:icon="@drawable/ic_movie_filter_black_64dp"
         android:title="Search Movies"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/search_menu_button"
-        android:icon="@drawable/ic_search_black_64dp"
-        android:title="Search Movies"
-        app:showAsAction="" />
+
     <item
         android:id="@+id/popular_menu_button"
         android:icon="@drawable/ic_whatshot_black_24dp"
@@ -24,5 +20,11 @@
         android:icon="@drawable/ic_favorite_white_64dp"
         android:title="Favorites"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/search_menu_button"
+        android:visible="false"
+        android:icon="@drawable/ic_search_black_64dp"
+        android:title="Search Movies"
+        app:showAsAction="ifRoom" />
 
 </menu>
