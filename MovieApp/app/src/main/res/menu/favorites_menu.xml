@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--todo change resource names to match color-->
+    <item
+        android:id="@+id/hot_menu_button"
+        android:icon="@drawable/ic_movie_filter_black_64dp"
+        android:title="Search Movies"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/search_menu_button"
+        android:icon="@drawable/ic_search_black_64dp"
+        android:title="Search Movies"
+        app:showAsAction="" />
+    <item
+        android:id="@+id/popular_menu_button"
+        android:icon="@drawable/ic_whatshot_black_24dp"
+        android:title="Popular Movies"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/favorite_menu_button"
+        android:icon="@drawable/ic_favorite_white_64dp"
+        android:title="Favorites"
+        app:showAsAction="always" />
+
+</menu>
