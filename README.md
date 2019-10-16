@@ -6,7 +6,7 @@ I intend to make the most out of this project, but it will take some time. My ma
 The broad topics, e.g. material design, will be detailed soon enough. I still don't have it all planned. 
 
 
-Todo list(Not-Priority Order(for now)):
+Todo list (Not-Priority Order(for now)):
 - ~~Implement Basic Retrofit~~
 - Implement Retrofit the right way
 - Treat possible errors and exceptions
