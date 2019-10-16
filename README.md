@@ -8,7 +8,7 @@ The broad topics, e.g. material design, will be detailed soon enough. I still do
 
 Todo list(Not-Priority Order(for now)):
 - ~~Implement Basic Retrofit~~
-- Implement interceptors
+- Implement Retrofit the right way
 - Treat possible errors and exceptions
 - Implement Best practices
 - Change architeture to MVVM or MVP
