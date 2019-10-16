@@ -32,3 +32,4 @@ Todo list(Not-Priority Order(for now)):
 - Implement Animations everywhere!
 - Find a better app name!(accepting suggestions)
 - Introduce Dark Theme and Light Theme
+- Implement Super Responsive UI  
