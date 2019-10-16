@@ -1,6 +1,5 @@
 package com.project.movieapp.beans
 
-import io.realm.RealmObject
 import java.io.Serializable
 
 data class ListResponseBean(
@@ -8,7 +7,7 @@ data class ListResponseBean(
     val results: List<ResultBean>,
     val total_pages: Int,
     val total_results: Int
-):Serializable, RealmObject()
+):Serializable
 
 data class ResultBean(
     val adult: Boolean,
@@ -25,4 +24,4 @@ data class ResultBean(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int
-):Serializable, RealmObject()
+):Serializable
