@@ -29,13 +29,14 @@ Todo list (Not-Priority Order(for now)):
 - Add Gifs/images to Readme.md
 - (future) publish app on PlayStore
 - Organize Todo(constant task)
-- ~~Implement Endless scrolling~~
+- ~~Implement "Endless" scrolling~~
 - Implement Animations everywhere!
 - Find a better app name!(accepting suggestions)
 - Introduce Dark Theme and Light Theme
 - Implement Super Responsive UI  
 - Use [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 - Add orientation-based support 
+- Organize Packages
 
 ## TOPICS
 
