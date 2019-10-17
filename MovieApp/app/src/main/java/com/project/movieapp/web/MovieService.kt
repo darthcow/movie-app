@@ -13,10 +13,10 @@ interface MovieService {
     //todo insert infinite scrolling method
     //add api key as parameter of fun
     @GET("movie/popular")
-    fun getPopular(@Query("api_key") apiKey: String): Call<ListResponseBean>
+    fun getPopular(@Query("api_key") apiKey: String,@Query("page") page: Int = 1): Call<ListResponseBean>
 
     @GET("movie/top_rated")
-    fun getTop(@Query("api_key") apiKey: String): Call<ListResponseBean>
+    fun getTop(@Query("api_key") apiKey: String,@Query("page") page: Int = 1): Call<ListResponseBean>
 
     @GET("movie/{movie_id}")
     fun getMovieDetails(@Path("movie_id") movieId: Int, @Query("api_key") apiKey: String): Call<MovieDetailsBean>
