@@ -67,11 +67,10 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
 
-    override fun onStop() {
+    override fun onDestroy() {
         realmInstance.close()
-        super.onStop()
+        super.onDestroy()
     }
-
     private fun saveToRealm(movie: MovieDetailsBean) {
         realmInstance.beginTransaction()
         realmInstance.executeTransactionAsync({ bgRealm ->
