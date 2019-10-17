@@ -13,6 +13,7 @@ import com.project.movieapp.adapter.RealmMovieListAdapter
 import com.project.movieapp.beans.ListResponseBean
 import com.project.movieapp.beans.MovieDetailsBean
 import com.project.movieapp.beans.ResultBean
+import com.project.movieapp.extensions.isInternetAvailable
 import com.project.movieapp.extensions.longToast
 import com.project.movieapp.extensions.shortToast
 import com.project.movieapp.web.WebClient
@@ -52,44 +53,28 @@ class MainActivity : AppCompatActivity() {
 //        val spanCount: Int = when (this.displayMetrics().widthPixels) {
 //            else -> 2
 //        }
+
         list_recyclerview.apply {
             layoutManager = GridLayoutManager(this@MainActivity, 2)
             itemAnimator = DefaultItemAnimator()
             setHasFixedSize(true)
-            getPopularMovies(currentPage)
+            if (!this@MainActivity.isInternetAvailable()) {
+                selectedOption = "favorite"
+                getFavoriteMovies()
+            } else
+                getPopularMovies(currentPage)
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    super.onScrollStateChanged(recyclerView, newState)
                     val recyclerLayout: GridLayoutManager =
                         recyclerView.layoutManager as GridLayoutManager
-                    if (recyclerLayout.findLastVisibleItemPosition() == recyclerLayout.itemCount - 4) {
-                        if (adapter !is RealmMovieListAdapter) {
-                            when (selectedOption) {
-                                "popular" -> {
-//                                    snackLoading.show()
-                                    getPopularMovies(++currentPage)
-                                }
-                                "top" -> {
-//                                    snackLoading.show()
-                                    getTopMovies(++currentPage)
-                                }
-                                "search" -> {
-                                    //todo search movies pagination
-//                                    snackLoading.show()
-                                    getPopularMovies(++currentPage)
-                                }
-                                else -> {
-                                }
-                            }
-
+                    if (recyclerLayout.findLastVisibleItemPosition() == recyclerLayout.itemCount - 1) {
+                        when (selectedOption) {
+                            "popular" -> getPopularMovies(++currentPage)
+                            "top" -> getTopMovies(++currentPage)
+                            //todo search movies pagination
                         }
-
-
                     }
-//                    else if (!recyclerView.canScrollVertically(-1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
-//                        snackLoading.show()
-//                        getPopularMovies(--currentPage)
-//                    }
+                    super.onScrollStateChanged(recyclerView, newState)
                 }
             })
         }
@@ -131,8 +116,10 @@ class MainActivity : AppCompatActivity() {
                 invalidateOptionsMenu()
             }
             R.id.favorite_menu_button -> {
+                selectedOption = "favorite"
+                supportActionBar?.subtitle = "Favorite movies"
+                invalidateOptionsMenu()
                 getFavoriteMovies()
-
             }
             else -> return super.onOptionsItemSelected(item)
         }
@@ -148,9 +135,6 @@ class MainActivity : AppCompatActivity() {
             list_recyclerview.adapter = null
             shortToast("No movie favorited")
         }
-        selectedOption = "favorite"
-        supportActionBar?.subtitle = "Favorite movies"
-        invalidateOptionsMenu()
 
     }
 
@@ -169,7 +153,6 @@ class MainActivity : AppCompatActivity() {
                     with(popularResponse) {
                         if (isSuccessful) {
                             body()?.run {
-
                                 loadPages(results, page)
                             }
                         } else {
@@ -187,20 +170,19 @@ class MainActivity : AppCompatActivity() {
 
     fun loadPages(movies: List<ResultBean>, page: Int) {
 
-        if (page == 1) {
-            listResults.clear()
-            listResults.addAll(movies)
-            list_recyclerview.adapter = MovieListAdapter(this@MainActivity, listResults)
-        }
-        //api version 3 only accepts 500 pages
-        else if(page<501){
-            snackLoading.dismiss()
-            listResults.addAll(movies)
-            list_recyclerview.adapter?.notifyDataSetChanged()
-//            list_recyclerview.smoothScrollToPosition(listResults.size - movies.size + 1)
-        }
-        else{
-            this.shortToast("Reached list Limit")
+        when {
+            page == 1 -> {
+                listResults.clear()
+                listResults.addAll(movies)
+                list_recyclerview.adapter = MovieListAdapter(this@MainActivity, listResults)
+            }
+            //api version 3 only accepts 500 pages
+            page < 501 -> {
+                snackLoading.dismiss()
+                listResults.addAll(movies)
+                list_recyclerview.adapter?.notifyDataSetChanged()
+            }
+            else -> this.shortToast("Reached list Limit")
         }
     }
 
@@ -213,24 +195,11 @@ class MainActivity : AppCompatActivity() {
                     popularResponse: Response<ListResponseBean>
                 ) {
                     with(popularResponse) {
-                        if (isSuccessful) {
-                            body()?.run {
-
-                                loadPages(results, page)
-//                                if (currentPage == 1) {
-//                                    listResults = results
-//                                    list_recyclerview.adapter =
-//                                        MovieListAdapter(this@MainActivity, listResults)
-//                                } else {
-//                                    listResults.addAll(results)
-//                                    list_recyclerview.adapter?.notifyDataSetChanged()
-//
-//                                }
-
-                            }
-                        } else {
+                        if (isSuccessful)
+                            body()?.run { loadPages(results, page) }
+                        else
                             this@MainActivity.longToast(message())
-                        }
+
                     }
                 }
 
