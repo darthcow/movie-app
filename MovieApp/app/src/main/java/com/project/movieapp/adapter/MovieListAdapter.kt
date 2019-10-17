@@ -15,20 +15,20 @@ import com.project.movieapp.beans.ResultBean
 import com.project.movieapp.web.WebClient.URLConstants
 
 class MovieListAdapter(private val context: Context, private val items: List<ResultBean>) :
-    RecyclerView.Adapter<Holder>() {
+    RecyclerView.Adapter<MovieListHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder = Holder(LayoutInflater.from(context).inflate(R.layout.adapter_movie_list_item, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListHolder = MovieListHolder(LayoutInflater.from(context).inflate(R.layout.adapter_movie_list_item, parent, false))
 
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: Holder, position: Int) {
+    override fun onBindViewHolder(movieListHolder: MovieListHolder, position: Int) {
         val currentItem = items[position]
 
         with(currentItem){
-            holder.movieTitle.text = title
-            holder.moviePoster.loadUrl(URLConstants.IMAGEURL+poster_path)
-            holder.itemView.setOnClickListener { openMovieDetails(id)}
+            movieListHolder.movieTitle.text = title
+            movieListHolder.moviePoster.loadUrl(URLConstants.IMAGEURL+poster_path)
+            movieListHolder.itemView.setOnClickListener { openMovieDetails(id)}
 
         }
     }
@@ -39,7 +39,7 @@ class MovieListAdapter(private val context: Context, private val items: List<Res
     }
 }
 
-class Holder(itemview: View) : RecyclerView.ViewHolder(itemview) {
+class MovieListHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
     //fixme refactor names later to reference adapter
     val movieTitle: TextView = itemview.findViewById(R.id.movieTitle)
     val moviePoster: ImageView = itemview.findViewById(R.id.moviePoster)
