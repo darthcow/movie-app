@@ -30,7 +30,14 @@ class MovieDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
-        movieId?.let { getMovieDetails(it) }
+        movieId?.let {
+            if (result?.id != it)
+                getFromApi(it)
+            else{
+               movieDetails = result
+                movieDetails?.let { it1 -> loadData(it1) }
+            }
+        }
         supportActionBar?.hide()
         details_favorite_fab.setOnClickListener { favoriteClick() }
 
@@ -71,7 +78,6 @@ class MovieDetailsActivity : AppCompatActivity() {
             bgRealm.copyToRealm(movie)
         }, {
             // Transaction was a success.
-            this.shortToast("Saved to favorites!")
             details_favorite_fab.setImageResource(R.drawable.ic_favorite_black_64dp)
             isFavorite = true
         }, {
@@ -82,7 +88,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
 
-    private fun getMovieDetails(movieId: Int) {
+    private fun getFromApi(movieId: Int) {
         WebClient().movieService().getMovieDetails(movieId, APIKEY)
             .enqueue(object : Callback<MovieDetailsBean> {
                 override fun onFailure(call: Call<MovieDetailsBean>, t: Throwable) {
@@ -145,9 +151,9 @@ class MovieDetailsActivity : AppCompatActivity() {
             details_ratingbar.stepSize = 0.01f
 
             details_ratingbar.isEnabled = true
-            details_ratingbar.rating = vote_average?.let { it.toFloat()/2 }?:0f
+            details_ratingbar.rating = vote_average?.let { it.toFloat() / 2 } ?: 0f
             details_ratingbar.setOnTouchListener { _, _ ->
-                this@MovieDetailsActivity.longToast("Score: ${vote_average?.let { it/2 } } | total votes $vote_count")
+                this@MovieDetailsActivity.longToast("Score: ${vote_average?.let { it / 2 }} | total votes $vote_count")
                 false
             }
 
