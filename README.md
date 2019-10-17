@@ -50,7 +50,7 @@ Todo list (Not-Priority Order(for now)):
 
 PS: i'm going to document in my own words explanation of the concepts I learn in another file in this repository(or maybe another repository)
 
-(Icons)[https://freeicons.io]
+[Icons](https://freeicons.io)
 
 
 
