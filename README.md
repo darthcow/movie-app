@@ -5,6 +5,13 @@ I intend to make the most out of this project, but it will take some time. My ma
 
 The broad topics, e.g. material design, will be detailed soon enough. I still don't have it all planned. 
 
+For now the app looks like this:
+
+![gif1](https://media.giphy.com/media/Pk4EPxQxVCwSbdt5ak/giphy.gif)
+![gif2](https://media.giphy.com/media/SYXpjwpO5TIgtTKn6h/giphy.gif)
+![gif3](https://media.giphy.com/media/h4Zdxq85vujYtPgEbF/giphy.gif)
+
+
 
 Todo list (Not-Priority Order(for now)):
 -
