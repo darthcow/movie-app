@@ -153,7 +153,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             details_ratingbar.isEnabled = true
             details_ratingbar.rating = vote_average?.let { it.toFloat() / 2 } ?: 0f
             details_ratingbar.setOnTouchListener { _, _ ->
-                this@MovieDetailsActivity.longToast("Score: ${vote_average?.let { it / 2 }} | total votes $vote_count")
+                this@MovieDetailsActivity.longToast("Score: ${vote_average?.let { it / 2 }} | total votes: $vote_count")
                 false
             }
 
