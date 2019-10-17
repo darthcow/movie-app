@@ -16,39 +16,74 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-
-
-
-
 //todo create and implement interface to necessary methods
 class MovieDetailsActivity : AppCompatActivity() {
-    private val realmInstance : Realm by lazy { Realm.getDefaultInstance() }
+
+    private var isFavorite: Boolean = false
+    private val result by lazy {
+        realmInstance.where(MovieDetailsBean::class.java)
+            .equalTo("id", movieId).findFirst()
+    }
+    private var movieDetails: MovieDetailsBean? = null
+    private val realmInstance: Realm by lazy { Realm.getDefaultInstance() }
     private val movieId: Int? by lazy { intent.extras?.getInt("movieId", 0) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
         movieId?.let { getMovieDetails(it) }
         supportActionBar?.hide()
+        details_favorite_fab.setOnClickListener { favoriteClick() }
+
+
     }
 
-//    override fun onStop() {
-//        realm.close
-//        super.onStop()
-//    }
-//    fun saveToRealm(movie: MovieDetailsBean){
-//        realmInstance.executeTransactionAsync({ bgRealm ->
-//           var realmMovie =  bgRealm.createObject(MovieDetailsBean::class.java)
-////           realmMovie.se
-//        }, {
-//            // Transaction was a success.
-//        }, {
-//            // Transaction failed and was automatically canceled.
-//        })
-//    }
+    private fun favoriteClick() {
+        movieDetails?.let {
+            if (isFavorite)
+                removeFromRealm()
+            else
+                saveToRealm(it)
+        }
+    }
+
+    private fun removeFromRealm() {
+        realmInstance.beginTransaction()
+        if (realmInstance.where(MovieDetailsBean::class.java)
+                .equalTo("id", movieId).findAll().deleteAllFromRealm()
+        ) {
+            details_favorite_fab.setImageResource(R.drawable.ic_favorite_border_black_64dp)
+            isFavorite = false
+        }
+        realmInstance.commitTransaction()
+
+
+    }
+
+
+    override fun onStop() {
+        realmInstance.close()
+        super.onStop()
+    }
+
+    private fun saveToRealm(movie: MovieDetailsBean) {
+        realmInstance.beginTransaction()
+        realmInstance.executeTransactionAsync({ bgRealm ->
+            bgRealm.copyToRealm(movie)
+        }, {
+            // Transaction was a success.
+            this.shortToast("Saved to favorites!")
+            details_favorite_fab.setImageResource(R.drawable.ic_favorite_black_64dp)
+            isFavorite = true
+        }, {
+            // Transaction failed and was automatically canceled.
+            it.message?.let { it1 -> this.longToast(it1) }
+        })
+        realmInstance.commitTransaction()
+    }
 
 
     private fun getMovieDetails(movieId: Int) {
-        WebClient().movieService().getMovieDetails(movieId,APIKEY)
+        WebClient().movieService().getMovieDetails(movieId, APIKEY)
             .enqueue(object : Callback<MovieDetailsBean> {
                 override fun onFailure(call: Call<MovieDetailsBean>, t: Throwable) {
                     this@MovieDetailsActivity.shortToast(t.message ?: "unidentified error")
@@ -62,6 +97,8 @@ class MovieDetailsActivity : AppCompatActivity() {
                         if (isSuccessful) {
                             body()?.run {
                                 loadData(this)
+                                movieDetails = this
+                                checkFavorite()
                             }
                         } else {
                             this@MovieDetailsActivity.longToast(message())
@@ -71,9 +108,19 @@ class MovieDetailsActivity : AppCompatActivity() {
             })
     }
 
+    private fun checkFavorite() {
+        return if (result?.id == movieDetails?.id) {
+            details_favorite_fab.setImageResource(R.drawable.ic_favorite_black_64dp)
+            isFavorite = true
+        } else {
+            details_favorite_fab.setImageResource(R.drawable.ic_favorite_border_black_64dp)
+            isFavorite = false
+        }
+    }
+
     private fun loadData(movieDetailsBean: MovieDetailsBean) {
         with(movieDetailsBean) {
-            details_backdrop.loadUrl(WebClient.URLConstants.IMAGEURL + backdrop_path ?: poster_path)
+            details_backdrop.loadUrl(WebClient.URLConstants.IMAGEURL + backdrop_path)
             details_title.text = "$title"
             details_length.text = "Length: $runtime minutes"
             //tagline
@@ -85,8 +132,10 @@ class MovieDetailsActivity : AppCompatActivity() {
             details_releasedate.text = "Release: $release_date"
 //            todo add tags later(requires another call)
 //            details_tags.addTag()
-            for (genre in genres) {
-                details_genres.addTag(genre.name)
+            genres?.let {
+                for (genre in it) {
+                    details_genres.addTag(genre.name)
+                }
             }
             details_overview_body.text = "$overview"
 
@@ -96,12 +145,11 @@ class MovieDetailsActivity : AppCompatActivity() {
             details_ratingbar.stepSize = 0.01f
 
             details_ratingbar.isEnabled = true
-            details_ratingbar.rating = vote_average.toFloat() / 2
+            details_ratingbar.rating = vote_average?.let { it.toFloat()/2 }?:0f
             details_ratingbar.setOnTouchListener { _, _ ->
-                this@MovieDetailsActivity.longToast("Score: ${vote_average / 2} | total votes $vote_count")
+                this@MovieDetailsActivity.longToast("Score: ${vote_average?.let { it/2 } } | total votes $vote_count")
                 false
             }
-
 
 
 //todo create adapter to trailers and reviews
