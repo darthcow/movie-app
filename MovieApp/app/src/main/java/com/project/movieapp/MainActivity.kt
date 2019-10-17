@@ -7,13 +7,18 @@ import android.view.MenuItem
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.project.movieapp.adapter.MovieListAdapter
+import com.project.movieapp.adapter.RealmMovieListAdapter
 import com.project.movieapp.extensions.longToast
 import com.project.movieapp.beans.ListResponseBean
+import com.project.movieapp.beans.MovieDetailsBean
+import com.project.movieapp.beans.ResultBean
 import com.project.movieapp.extensions.displayMetrics
 import com.project.movieapp.extensions.shortToast
 import com.project.movieapp.web.WebClient
 import com.project.movieapp.web.WebClient.URLConstants.APIKEY
 import io.realm.Realm
+import io.realm.RealmResults
+import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,7 +27,7 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    private val realmInstance : Realm  by lazy { Realm.getDefaultInstance() }
+    private val realmInstance: Realm by lazy { Realm.getDefaultInstance() }
 
     private var selectedOption: String = "popular"
 
@@ -42,6 +47,10 @@ class MainActivity : AppCompatActivity() {
             getPopularMovies()
         }
     }
+
+//val result: RealmResults<MovieDetailsBean> =
+//        realmInstance.where<MovieDetailsBean>().findAll()
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.favorites_menu, menu)
@@ -66,16 +75,25 @@ class MainActivity : AppCompatActivity() {
                 invalidateOptionsMenu()
             }
             R.id.favorite_menu_button -> {
-                //todo implement favorites listing
-                selectedOption = "favorite"
-                supportActionBar?.subtitle = "Favorite movies"
-                list_recyclerview.adapter = null
-                invalidateOptionsMenu()
+                getFavoriteMovies()
 
             }
             else -> return super.onOptionsItemSelected(item)
         }
         return true
+    }
+
+    private fun getFavoriteMovies() {
+        val result: RealmResults<MovieDetailsBean> =
+            realmInstance.where<MovieDetailsBean>().findAll()
+        if (result.size > 0)
+            list_recyclerview.adapter = RealmMovieListAdapter(this, result)
+        else
+            list_recyclerview.adapter = null
+        selectedOption = "favorite"
+        supportActionBar?.subtitle = "Favorite movies"
+        invalidateOptionsMenu()
+
     }
 
     private fun getTopMovies() {
