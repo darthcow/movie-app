@@ -31,11 +31,17 @@ class MovieDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
         movieId?.let {
-            if (result?.id != it)
+            if (result?.id != it) {
                 getFromApi(it)
-            else{
-               movieDetails = result
+                details_favorite_fab.setImageResource(R.drawable.ic_favorite_border_black_64dp)
+                isFavorite = false
+            } else {
+                realmInstance.beginTransaction()
+                movieDetails = realmInstance.copyFromRealm(result)
+                realmInstance.commitTransaction()
                 movieDetails?.let { it1 -> loadData(it1) }
+                details_favorite_fab.setImageResource(R.drawable.ic_favorite_black_64dp)
+                isFavorite = true
             }
         }
         supportActionBar?.hide()
@@ -62,15 +68,15 @@ class MovieDetailsActivity : AppCompatActivity() {
             isFavorite = false
         }
         realmInstance.commitTransaction()
-
-
     }
+
 
 
     override fun onDestroy() {
         realmInstance.close()
         super.onDestroy()
     }
+
     private fun saveToRealm(movie: MovieDetailsBean) {
         realmInstance.beginTransaction()
         realmInstance.executeTransactionAsync({ bgRealm ->
@@ -103,7 +109,6 @@ class MovieDetailsActivity : AppCompatActivity() {
                             body()?.run {
                                 loadData(this)
                                 movieDetails = this
-                                checkFavorite()
                             }
                         } else {
                             this@MovieDetailsActivity.longToast(message())
@@ -111,16 +116,6 @@ class MovieDetailsActivity : AppCompatActivity() {
                     }
                 }
             })
-    }
-
-    private fun checkFavorite() {
-        return if (result?.id == movieDetails?.id) {
-            details_favorite_fab.setImageResource(R.drawable.ic_favorite_black_64dp)
-            isFavorite = true
-        } else {
-            details_favorite_fab.setImageResource(R.drawable.ic_favorite_border_black_64dp)
-            isFavorite = false
-        }
     }
 
     private fun loadData(movieDetailsBean: MovieDetailsBean) {
