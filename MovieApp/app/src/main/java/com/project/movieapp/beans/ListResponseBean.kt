@@ -3,25 +3,25 @@ package com.project.movieapp.beans
 import java.io.Serializable
 
 data class ListResponseBean(
-    val page: Int,
-    val results: List<ResultBean>,
-    val total_pages: Int,
-    val total_results: Int
+    var page: Int,
+    var results: ArrayList<ResultBean>,
+    var total_pages: Int,
+    var total_results: Int
 ):Serializable
 
 data class ResultBean(
-    val adult: Boolean,
-    val backdrop_path: String,
-    val genre_ids: List<Int>,
-    val id: Int,
-    val original_language: String,
-    val original_title: String,
-    val overview: String,
-    val popularity: Double,
-    val poster_path: String,
-    val release_date: String,
-    val title: String,
-    val video: Boolean,
-    val vote_average: Double,
-    val vote_count: Int
+    var adult: Boolean,
+    var backdrop_path: String,
+    var genre_ids: List<Int>,
+    var id: Int,
+    var original_language: String,
+    var original_title: String,
+    var overview: String,
+    var popularity: Double,
+    var poster_path: String,
+    var release_date: String,
+    var title: String,
+    var video: Boolean,
+    var vote_average: Double,
+    var vote_count: Int
 ):Serializable
