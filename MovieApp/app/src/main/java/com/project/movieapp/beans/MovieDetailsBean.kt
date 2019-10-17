@@ -1,55 +1,59 @@
 package com.project.movieapp.beans
 
+import io.realm.RealmList
+import io.realm.RealmObject
 import java.io.Serializable
 
-data class MovieDetailsBean(
-    val adult: Boolean,
-    val backdrop_path: String?,
-    val belongs_to_collection: Any,
-    val budget: Int,
-    val genres: List<Genre>,
-    val homepage: String,
-    val id: Int,
-    val imdb_id: String,
-    val original_language: String,
-    val original_title: String,
-    val overview: String,
-    val popularity: Double,
-    val poster_path: String,
-    val production_companies: List<ProductionCompany>,
-    val production_countries: List<ProductionCountry>,
-    val release_date: String,
-    val revenue: Int,
-    val runtime: Int,
-    val spoken_languages: List<SpokenLanguage>,
-    val status: String,
-    val tagline: String,
-    val title: String,
-    val video: Boolean,
-    val vote_average: Double,
-    val vote_count: Int
-) : Serializable
+open class MovieDetailsBean(
+    var adult: Boolean? = false,
+    var backdrop_path: String? = "",
+//    fixme belongs_to_collection not always come as null, it comes as another object and realm doesn't accept Any
+//    var belongs_to_collection: Boolean? = null,
+    var budget: Int? = 0,
+    var genres: RealmList<Genre>? = null,
+    var homepage: String? = "",
+    var id: Int? = 0,
+    var imdb_id: String? = "",
+    var original_language: String? = "",
+    var original_title: String? = "",
+    var overview: String? = "",
+    var popularity: Double? = 0.0,
+    var poster_path: String? = "",
+    var production_companies: RealmList<ProductionCompany>? = null,
+    var production_countries: RealmList<ProductionCountry>? = null,
+    var release_date: String = "",
+    var revenue: Int? = 0,
+    var runtime: Int? = 0,
+    var spoken_languages: RealmList<SpokenLanguage>? = null,
+    var status: String? = "",
+    var tagline: String? = "",
+    var title: String? = "",
+    var video: Boolean? = null,
+    var vote_average: Double? = 0.0,
+    var vote_count: Int? = 0
+//    var model: MovieDetailsBean? = null
+) : RealmObject(), Serializable
 
-data class Genre(
-    val id: Int,
-    val name: String
-) : Serializable
 
-data class ProductionCompany(
-    val id: Int,
-    val logo_path: String,
-    val name: String,
-    val origin_country: String
-) : Serializable
+open class Genre(
+    var id: Int? = 0,
+    var name: String? = ""
+) : RealmObject(), Serializable
 
-data class ProductionCountry(
-    val iso_3166_1: String,
-    val name: String
-) : Serializable
+open class ProductionCompany(
+    var id: Int? = 0,
+    var logo_path: String? = "",
+    var name: String? = "",
+    var origin_country: String? = ""
+) : RealmObject(), Serializable
 
-data class SpokenLanguage(
-    val iso_639_1: String,
-    val name: String
-) : Serializable
+open class ProductionCountry(
+    var iso_3166_1: String? = "",
+    var name: String? = ""
+) : RealmObject(), Serializable
 
+open class SpokenLanguage(
+    var iso_639_1: String? = "",
+    var name: String? = ""
+) : RealmObject(), Serializable
 
