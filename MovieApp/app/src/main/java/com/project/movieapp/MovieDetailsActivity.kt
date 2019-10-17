@@ -8,6 +8,7 @@ import com.project.movieapp.extensions.loadUrl
 import com.project.movieapp.extensions.longToast
 import com.project.movieapp.extensions.shortToast
 import com.project.movieapp.web.WebClient
+import com.project.movieapp.web.WebClient.URLConstants.APIKEY
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import retrofit2.Call
@@ -47,7 +48,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
 
     private fun getMovieDetails(movieId: Int) {
-        WebClient().movieService().getMovieDetails(movieId)
+        WebClient().movieService().getMovieDetails(movieId,APIKEY)
             .enqueue(object : Callback<MovieDetailsBean> {
                 override fun onFailure(call: Call<MovieDetailsBean>, t: Throwable) {
                     this@MovieDetailsActivity.shortToast(t.message ?: "unidentified error")

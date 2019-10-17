@@ -5,26 +5,27 @@ import com.project.movieapp.beans.ListResponseBean
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface MovieService {
     //todo use interceptor later to insert api key and other optinal parameters
     //todo insert infinite scrolling method
-    @GET("movie/popular?api_key=fc621c22645579c003cd78bba01d4f70&language=en-US&page=1")
-    fun getPopular(): Call<ListResponseBean>
+    //add api key as parameter of fun
+    @GET("movie/popular")
+    fun getPopular(@Query("api_key") apiKey: String): Call<ListResponseBean>
 
-    @GET("movie/top_rated?api_key=fc621c22645579c003cd78bba01d4f70&language=en-US&page=1")
-    fun getTop(): Call<ListResponseBean>
+    @GET("movie/top_rated")
+    fun getTop(@Query("api_key") apiKey: String): Call<ListResponseBean>
 
-    @GET("movie/{movie_id}?api_key=fc621c22645579c003cd78bba01d4f70&language=en-US")
-    fun getMovieDetails(@Path("movie_id") movieId: Int): Call<MovieDetailsBean>
-//todo
-    @GET("movie/{movie_id}/reviews?api_key=fc621c22645579c003cd78bba01d4f70&language=en-US")
-    fun getListReviews(@Path("movie_id") movieId: Int): Call<MovieDetailsBean>
-//todo
+    @GET("movie/{movie_id}")
+    fun getMovieDetails(@Path("movie_id") movieId: Int, @Query("api_key") apiKey: String): Call<MovieDetailsBean>
 
-    @GET("review/{review_id}?api_key=fc621c22645579c003cd78bba01d4f70&language=en-US")
-    fun getReview(@Path("movie_id") movieId: Int): Call<MovieDetailsBean>
+    @GET("movie/{movie_id}/reviews")
+    fun getListReviews(@Path("movie_id") movieId: Int, @Query("api_key") apiKey: String): Call<MovieDetailsBean>
+
+    @GET("review/{review_id}")
+    fun getReview(@Path("movie_id") movieId: Int, @Query("api_key") apiKey: String): Call<MovieDetailsBean>
 
 
 }

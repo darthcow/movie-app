@@ -12,6 +12,7 @@ import com.project.movieapp.beans.ListResponseBean
 import com.project.movieapp.extensions.displayMetrics
 import com.project.movieapp.extensions.shortToast
 import com.project.movieapp.web.WebClient
+import com.project.movieapp.web.WebClient.URLConstants.APIKEY
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -78,7 +79,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getTopMovies() {
-        WebClient().movieService().getTop().enqueue(object : Callback<ListResponseBean> {
+        WebClient().movieService().getTop(APIKEY).enqueue(object : Callback<ListResponseBean> {
             override fun onResponse(
                 call: Call<ListResponseBean>,
                 popularResponse: Response<ListResponseBean>
@@ -107,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun getPopularMovies() {
-        WebClient().movieService().getPopular().enqueue(object : Callback<ListResponseBean> {
+        WebClient().movieService().getPopular(APIKEY).enqueue(object : Callback<ListResponseBean> {
             override fun onResponse(
                 call: Call<ListResponseBean>,
                 popularResponse: Response<ListResponseBean>
