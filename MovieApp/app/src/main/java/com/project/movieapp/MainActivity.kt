@@ -16,7 +16,6 @@ import com.project.movieapp.extensions.isNetworkConnected
 import com.project.movieapp.extensions.longToast
 import com.project.movieapp.extensions.shortToast
 import com.project.movieapp.web.WebClient
-import com.project.movieapp.web.WebClient.URLConstants.APIKEY
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.kotlin.where
@@ -152,7 +151,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.subtitle = "Top rated movies"
         selectedOption = "top"
         invalidateOptionsMenu()
-        WebClient().movieService().getTop(APIKEY, page)
+        WebClient().movieService().getTop(page)
             .enqueue(object : Callback<ListResponseBean> {
                 override fun onResponse(
                     call: Call<ListResponseBean>,
@@ -198,7 +197,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.subtitle = "Popular movies"
         selectedOption = "popular"
         invalidateOptionsMenu()
-        WebClient().movieService().getPopular(APIKEY, page)
+        WebClient().movieService().getPopular(page)
             .enqueue(object : Callback<ListResponseBean> {
                 override fun onResponse(
                     call: Call<ListResponseBean>,
