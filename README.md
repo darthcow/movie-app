@@ -39,7 +39,7 @@ Todo list (Not-Priority Order(for now)):
 - ~~Implement "Endless" scrolling~~
 - Implement Animations everywhere!
 - Find a better app name!(accepting suggestions)
-- Introduce Dark Theme and Light Theme
+- Support Dark Theme and Light Theme
 - Implement Super Responsive UI  
 - Use [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 - Add orientation-based support 
