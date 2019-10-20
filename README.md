@@ -44,6 +44,7 @@ Todo list (Not-Priority Order(for now)):
 - Use [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 - Add orientation-based support 
 - Organize Packages
+- Add settings section for user to choose options like images resolution 
 
 ## TOPICS
 
