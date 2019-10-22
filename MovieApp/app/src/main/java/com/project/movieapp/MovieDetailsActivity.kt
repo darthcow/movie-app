@@ -151,7 +151,6 @@ class MovieDetailsActivity : AppCompatActivity() {
                 false
             }
 
-
 //todo create adapter to trailers and reviews
             details_trailers_list.adapter
             details_reviews_list.adapter

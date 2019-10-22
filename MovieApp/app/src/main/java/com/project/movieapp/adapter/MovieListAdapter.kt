@@ -27,7 +27,7 @@ class MovieListAdapter(private val context: Context, private val items: List<Res
 
         with(currentItem){
             movieListHolder.movieTitle.text = title
-            movieListHolder.moviePoster.loadUrl(URLConstants.IMAGEURL+poster_path)
+            movieListHolder.moviePoster.loadUrl(getPosterPath())
             movieListHolder.itemView.setOnClickListener { openMovieDetails(id)}
 
         }
