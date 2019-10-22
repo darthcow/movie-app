@@ -18,7 +18,7 @@ class WebClient {
 
  object URLConstants{
     const val BASEURL = "https://api.themoviedb.org/3/"
-     const val IMAGEURL = "https://image.tmdb.org/t/p/w780/"
+     const val IMAGEURL = "https://image.tmdb.org/t/p/w500/"
      const val APIKEY = "fc621c22645579c003cd78bba01d4f70"
 
 }
