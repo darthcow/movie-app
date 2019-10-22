@@ -1,5 +1,6 @@
 package com.project.movieapp.beans
 
+import com.project.movieapp.web.WebClient
 import java.io.Serializable
 
 data class ListResponseBean(
@@ -25,3 +26,8 @@ data class ResultBean(
     var vote_average: Double,
     var vote_count: Int
 ):Serializable
+{
+    fun getPosterPath(): String = WebClient.URLConstants.IMAGEURL+poster_path
+    fun getbackPath(): String = WebClient.URLConstants.IMAGEURL+backdrop_path
+
+}
