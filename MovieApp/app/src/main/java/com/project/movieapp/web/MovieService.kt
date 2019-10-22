@@ -10,9 +10,6 @@ import retrofit2.http.Query
 
 
 interface MovieService {
-    //todo use interceptor later to insert api key and other optinal parameters
-    //todo insert infinite scrolling method
-    //add api key as parameter of fun
     @GET("movie/popular")
     fun getPopular(@Query("page") page: Int = 1,@Query("api_key") apiKey: String = APIKEY): Call<ListResponseBean>
 
