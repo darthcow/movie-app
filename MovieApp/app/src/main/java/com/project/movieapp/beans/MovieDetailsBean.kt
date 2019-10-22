@@ -1,5 +1,6 @@
 package com.project.movieapp.beans
 
+import com.project.movieapp.web.WebClient
 import io.realm.RealmList
 import io.realm.RealmObject
 import java.io.Serializable
@@ -7,7 +8,7 @@ import java.io.Serializable
 open class MovieDetailsBean(
 //    var adult: Boolean? = false,
     var backdrop_path: String? = "",
-//    fixme belongs_to_collection not always come as null, it comes as another object and realm doesn't accept Any
+//    fixme belongs_to_collection not always comes as null or boolean, it comes as another object and realm doesn't accept Any
 //    var belongs_to_collection: Boolean? = null,
 //    var budget: Int? = 0,
     var genres: RealmList<Genre>? = null,
@@ -19,7 +20,7 @@ open class MovieDetailsBean(
     var overview: String? = "",
 //    var popularity: Double? = 0.0,
     var poster_path: String? = "",
-//    var production_companies: RealmList<ProductionCompany>? = null,
+    var production_companies: RealmList<ProductionCompany>? = null,
 //    var production_countries: RealmList<ProductionCountry>? = null,
     var release_date: String = "",
 
@@ -34,6 +35,11 @@ open class MovieDetailsBean(
     var vote_count: Int? = 0
 //    var model: MovieDetailsBean? = null
 ) : RealmObject(), Serializable
+{
+    fun getPosterPath(): String = WebClient.URLConstants.IMAGEURL+poster_path
+    fun getbackPath(): String = WebClient.URLConstants.IMAGEURL+backdrop_path
+
+}
 
 
 open class Genre(
@@ -47,6 +53,9 @@ open class ProductionCompany(
     var name: String? = "",
     var origin_country: String? = ""
 ) : RealmObject(), Serializable
+{
+    fun getLogoPath(): String = WebClient.URLConstants.IMAGEURL+logo_path
+}
 
 open class ProductionCountry(
     var iso_3166_1: String? = "",
