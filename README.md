@@ -45,6 +45,7 @@ Todo list (Not-Priority Order(for now)):
 - Add orientation-based support 
 - Organize Packages
 - Add settings section for user to choose options like images resolution 
+- Add Unit testing
 
 ## TOPICS
 
