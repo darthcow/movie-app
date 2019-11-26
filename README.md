@@ -48,6 +48,7 @@ Todo list (Not-Priority Order(for now)):
 - Add Unit testing
 - Implement [DataBinding](https://developer.android.com/topic/libraries/data-binding)
 - Implement Kotlin Coroutines
+- Implement Jetpack Navigation
 ## TOPICS
 
 ### To Learn:
