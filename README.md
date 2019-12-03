@@ -45,11 +45,12 @@ Todo list (Not-Priority Order(for now)):
 - Add orientation-based support 
 - Organize Packages
 - Add settings section for user to choose options like images resolution 
-- Add Unit testing
+- Implement Unit testing
 - Implement [DataBinding](https://developer.android.com/topic/libraries/data-binding)
 - Implement Kotlin Coroutines
 - Implement Jetpack Navigation
 - Implement UI tests
+
 ## TOPICS
 
 ### To Learn:
