@@ -14,7 +14,7 @@ For now the app looks like this:
 
 
 Todo list (Not-Priority Order(for now)):
--
+
 - ~~Implement Basic Retrofit~~
 - Implement Retrofit the right way
 - Treat possible errors and exceptions
