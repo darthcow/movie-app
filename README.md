@@ -28,7 +28,7 @@ Todo list (Not-Priority Order(for now)):
 - Get the most out of the API elements(Tv,Artists...)
 - Clean code
 - Use v4 of the api which uses JWT authorization
-- Implement Depedency Injection Framework ([Dagger2](https://github.com/google/dagger) or [Koin](https://github.com/InsertKoinIO/koin))
+- Implement Depedency Injection Framework ([Koin](https://github.com/InsertKoinIO/koin))
 - Implement Test Driven Development(TDD)
 - Implement [Android Architeture Components](https://developer.android.com/topic/libraries/architecture/index.html)
 - Mock all requests
