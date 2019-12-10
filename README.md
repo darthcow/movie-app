@@ -50,6 +50,7 @@ Todo list (Not-Priority Order(for now)):
 - Implement Kotlin Coroutines
 - Implement Jetpack Navigation
 - Implement UI tests
+- Implement Clean Architeture
 
 ## TOPICS
 
