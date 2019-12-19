@@ -50,20 +50,8 @@ Todo list (Not-Priority Order(for now)):
 - Implement Kotlin Coroutines
 - Implement [Jetpack Navigation](https://developer.android.com/guide/navigation)
 - Implement UI tests
-- Implement Clean Architeture
+- Implement [Clean Architeture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
-## TOPICS
-
-### To Learn:
-
-- MVVM
-- GitFlow
-- Realm
-
-### Learned:
-- soon...
-
-PS: i'm going to document in my own words explanation of the concepts I learn in another file in this repository(or maybe another repository)
 
 [Icons](https://freeicons.io)
 
