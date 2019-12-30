@@ -51,6 +51,7 @@ Todo list (Not-Priority Order(for now)):
 - Implement [Jetpack Navigation](https://developer.android.com/guide/navigation)
 - Implement UI tests
 - Implement [Clean Architeture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- Allow trailer to be played in app, maybe using [ExoPlayer](https://github.com/google/ExoPlayer)
 
 
 [Icons](https://freeicons.io)
