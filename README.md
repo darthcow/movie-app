@@ -52,6 +52,7 @@ Todo list (Not-Priority Order(for now)):
 - Implement UI tests
 - Implement [Clean Architeture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - Allow trailer to be played in app, maybe using [ExoPlayer](https://github.com/google/ExoPlayer)
+- Implement ShimmerLayout loading
 
 
 [Icons](https://freeicons.io)
